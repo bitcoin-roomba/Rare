@@ -1,12 +1,13 @@
 import os
 from logging import getLogger
 
-from PyQt5.QtCore import QProcess, pyqtSignal
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import QProcess, pyqtSignal, QSize
+from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QPushButton, QStyle, QVBoxLayout
 from legendary.core import LegendaryCore
 from legendary.models.game import InstalledGame
 
+from Rare import style_path
 from Rare.Tabs.GamesInstalled.GameSettingsDialog import GameSettingsDialog
 from Rare.utils import legendaryUtils
 from Rare.utils.RareConfig import IMAGE_DIR
@@ -50,7 +51,10 @@ class GameWidget(QWidget):
         ##Layout on the right
         self.childLayout = QVBoxLayout()
         play_icon = self.style().standardIcon(getattr(QStyle, 'SP_MediaPlay'))
-        settings_icon = self.style().standardIcon(getattr(QStyle, 'SP_DirIcon'))
+        #settings_icon = self.style().standardIcon(getattr(QStyle, 'SP_DirIcon'))
+
+        settings_icon = QPixmap(style_path+"Icons/settings.png")
+
         self.title_widget = QLabel(f"<h1>{self.title}</h1>")
         self.app_name_label = QLabel(self.app_name)
         self.launch_button = QPushButton(play_icon, self.tr("Launch"))
@@ -63,7 +67,8 @@ class GameWidget(QWidget):
         self.developer_label = QLabel(self.tr("Developer: ") + self.dev)
         self.version_label = QLabel("Version: " + str(self.version))
         self.size_label = QLabel(f"{self.tr('Installed size')}: {round(self.size / (1024 ** 3), 2)} GB")
-        self.settings_button = QPushButton(settings_icon, f" {self.tr('Settings')} (Icon TODO)")
+        self.settings_button = QPushButton(f" {self.tr('Settings')} (Icon TODO)")
+        self.settings_button.setIcon(QIcon(settings_icon))
         self.settings_button.setFixedWidth(200)
         self.settings_button.clicked.connect(self.settings)
 

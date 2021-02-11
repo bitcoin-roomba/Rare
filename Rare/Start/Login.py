@@ -6,23 +6,13 @@ from json import loads
 from logging import getLogger
 
 from PyQt5.QtCore import QUrl, pyqtSignal
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEnginePage
+# from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEnginePage
 from PyQt5.QtWidgets import QDialog, QWidget, QVBoxLayout, QLabel, QPushButton, QStackedLayout, QLineEdit, QButtonGroup, \
     QRadioButton
 from legendary.core import LegendaryCore
 
 logger = getLogger("LoginWindow")
 
-
-class LoginBrowser(QWebEngineView):
-    def __init__(self):
-        super(LoginBrowser, self).__init__()
-        self.browser_profile = QWebEngineProfile("storage", self)
-        self.webpage = QWebEnginePage(self.browser_profile, self)
-        self.setPage(self.webpage)
-
-    def createWindow(self, webengine_window_type):
-        return self
 
 
 class ImportWidget(QWidget):
@@ -171,8 +161,8 @@ class LoginWindow(QDialog):
             "<h2>" + self.tr(
                 "Welcome to Rare the graphical interface for Legendary, an open source Epic Games alternative.") + "</h2>\n<h3>" + self.tr(
                 "Select an option to Login") + "</h3>")
-        self.browser_btn = QPushButton(self.tr("Use built in browser to login"))
-        self.browser_btn.clicked.connect(self.browser_login)
+        #self.browser_btn = QPushButton(self.tr("Use built in browser to login"))
+        #self.browser_btn.clicked.connect(self.browser_login)
         self.browser_btn_normal = QPushButton(self.tr("Use System browser"))
         self.browser_btn_normal.clicked.connect(self.sys_browser_login)
         self.import_btn = QPushButton(self.tr("Import from existing Epic Games installation"))
@@ -190,8 +180,8 @@ class LoginWindow(QDialog):
         self.welcome_layout.addWidget(self.exit_btn)
         self.widget.setLayout(self.welcome_layout)
 
-        self.browser = LoginBrowser()
-        self.browser.loadFinished.connect(self.check_for_sid_page)
+        #self.browser = LoginBrowser()
+        #self.browser.loadFinished.connect(self.check_for_sid_page)
 
         self.import_widget = ImportWidget(self.core)
         self.import_widget.signal.connect(self.login_signal)
@@ -201,7 +191,7 @@ class LoginWindow(QDialog):
 
         self.layout = QStackedLayout()
         self.layout.addWidget(self.widget)
-        self.layout.addWidget(self.browser)
+        # self.layout.addWidget(self.browser)
         self.layout.addWidget(self.import_widget)
         self.layout.addWidget(self.sys_browser_widget)
         self.setLayout(self.layout)
@@ -229,12 +219,12 @@ class LoginWindow(QDialog):
         self.code = 1
         self.close()
 
-    def browser_login(self):
+    """def browser_login(self):
         self.setGeometry(0, 0, 800, 600)
         self.browser.load(QUrl(
             'https://www.epicgames.com/id/login?redirectUrl=https%3A%2F%2Fwww.epicgames.com%2Fid%2Fapi%2Fredirect'))
         self.layout.setCurrentIndex(1)
-
+"""
     def sys_browser_login(self):
         self.layout.setCurrentIndex(3)
         webbrowser.open(
@@ -242,7 +232,7 @@ class LoginWindow(QDialog):
 
     def import_login(self):
         self.layout.setCurrentIndex(2)
-
+"""
     def check_for_sid_page(self):
         if self.browser.url() == QUrl("https://www.epicgames.com/id/api/redirect"):
             self.browser.page().toPlainText(self.browser_auth)
@@ -257,3 +247,4 @@ class LoginWindow(QDialog):
             logger.warning("Login failed")
             self.browser.close()
             self.text.setText(self.tr("Login Failed"))
+"""

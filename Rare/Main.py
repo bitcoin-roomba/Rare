@@ -1,7 +1,6 @@
 import logging
 import os
 import sys
-
 import requests
 from PyQt5.QtCore import QTranslator
 from PyQt5.QtWidgets import QApplication, QMessageBox
@@ -60,8 +59,8 @@ def main():
         launch_dialog = LaunchDialog(core)
         launch_dialog.exec_()
     mainwindow = MainWindow(core)
-# if RareConfig.THEME == "default":
-    #   launch_dialog.setStyleSheet(open(style_path).read())
+    # mainwindow = MainWindow(core)
+
     app.exec_()
 
 
