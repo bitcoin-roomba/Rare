@@ -30,7 +30,10 @@ Using the exe-file could cause an error with the stylesheets
 
 - For Arch Linux is an AUR package available: [rare-git](https://aur.archlinux.org/packages/rare-git)
 - Other distributions have to install it with pip or clone the repo and install it manually: *python3 setup.py install*
-
+ 
+ ## Issues
+ If you run in an issue with PyQtWebengine, try the branch "without-browser"
+ 
 ## Implemented
 
 - Launch, install and uninstall games
