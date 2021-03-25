@@ -51,8 +51,8 @@ Using the exe-file could cause an error with the stylesheets
 
 ## Images
 
-![alt text](https://github.com/Dummerle/Rare/blob/master/Screenshots/GameList.png?raw=true)
-![alt text](https://github.com/Dummerle/Rare/blob/master/Screenshots/Uninstalled.png?raw=true)
-![alt text](https://github.com/Dummerle/Rare/blob/master/Screenshots/Settings.png?raw=true)
+![alt text](https://github.com/Dummerle/Rare/blob/old/Screenshots/GameList.png?raw=true)
+![alt text](https://github.com/Dummerle/Rare/blob/old/Screenshots/Uninstalled.png?raw=true)
+![alt text](https://github.com/Dummerle/Rare/blob/old/Screenshots/Settings.png?raw=true)
 
 
