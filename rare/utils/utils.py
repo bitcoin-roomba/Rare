@@ -267,7 +267,7 @@ def create_rare_desktop_link(type_of_link):
         shell = Dispatch('WScript.Shell')
         shortcut = shell.CreateShortCut(pathLink)
         shortcut.Targetpath = exexutable
-        shortcut.Arguments = os.path.abspath(sys.argv[0])
+        shortcut.Arguments = '\"' + os.path.abspath(sys.argv[0]) + '\"'
         shortcut.WorkingDirectory = os.getcwd()
 
         # Icon
@@ -326,7 +326,7 @@ def create_desktop_link(app_name, core: LegendaryCore, type_of_link="desktop") -
         if not os.path.exists(target_folder):
             return False
 
-        target = os.path.abspath(sys.argv[0])
+        target = '\"' + os.path.abspath(sys.argv[0]) + '\"'
 
         # Name of link file
 
